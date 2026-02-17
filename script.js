@@ -3,6 +3,11 @@ console.log("funcionando");
 
 const valueHour = 34000;
 const sections = document.querySelectorAll('.inversiones .section');
+const totalHoursElements = document.querySelectorAll('.hour');
+const totalHoursElement = document.querySelector('.hours-bar__total-hours');
+const hoursBarElement = document.querySelector('.hours-bar');
+
+let totalHours = 0;
 
 sections.forEach(section => {
     totalSection(section);
@@ -25,7 +30,7 @@ function totalSection(section){
         hourElement.textContent = hourValue + "h";
         totalHoursSection += hourValue;
         totalInputsSection += inputValue;
-
+        totalHoursFunc(hourValue);
     });
 
     if(totalHoursElement){
@@ -37,6 +42,13 @@ function totalSection(section){
      }
 }
 
+function totalHoursFunc(hour){
+    totalHours += hour;
+    console.log(totalHours)
+}
+
+totalHoursElement.textContent = totalHours + "h";
+hoursBarElement.style.setProperty('--total-hours', totalHours)
 
 
 
