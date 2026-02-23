@@ -1,13 +1,17 @@
 'strict'
 console.log("funcionando");
 
-const valueHour = 34000;
+const valueHour = 34500 - (34500*0.06);
 const sections = document.querySelectorAll('.inversiones .section');
 const totalHoursElements = document.querySelectorAll('.hour');
 const totalHoursElement = document.querySelector('.hours-bar__total-hours');
 const hoursBarElement = document.querySelector('.hours-bar');
+const workTime = parseInt(document.querySelector('.work-time').textContent.split("h").join(""));
+
+console.log(valueHour)
 
 let totalHours = 0;
+let count = 1;
 
 sections.forEach(section => {
     totalSection(section);
@@ -25,12 +29,22 @@ function totalSection(section){
         const inputElement = item.querySelector('.input');
         
         const inputValue = parseInt(inputElement.textContent.split(".").join("").split("$").join(""));
-        const hourValue = Math.round((inputValue / valueHour));
+        const hourValue = Math.round(inputValue / valueHour);
+
+        
         
         hourElement.textContent = hourValue + "h";
         totalHoursSection += hourValue;
         totalInputsSection += inputValue;
         totalHoursFunc(hourValue);
+        item.setAttribute('title', 'Horas:' + totalHours + "h");
+
+        if(totalHours <= workTime){
+            item.classList.add('completed')
+        }else if(count > 0){
+            item.classList.add('current');
+            count -=1;
+        }
     });
 
     if(totalHoursElement){

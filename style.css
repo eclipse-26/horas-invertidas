@@ -33,7 +33,7 @@ header{
 
     & .hours-bar__bar{
         --height: 1.25rem;
-        --hours: 76;
+        --hours: 90;
         position: relative;
         width: 100%;
         height: var(--height);
