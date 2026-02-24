@@ -58,11 +58,12 @@ function totalSection(section){
 
 function totalHoursFunc(hour){
     totalHours += hour;
-    console.log(totalHours)
+    console.log(totalHours);
 }
 
 totalHoursElement.textContent = totalHours + "h";
-hoursBarElement.style.setProperty('--total-hours', totalHours)
+hoursBarElement.style.setProperty('--total-hours', totalHours);
+hoursBarElement.style.setProperty('--work-time', workTime);
 
 
 
