@@ -6,7 +6,7 @@ const sections = document.querySelectorAll('.inversiones .section');
 const totalHoursElements = document.querySelectorAll('.hour');
 const totalHoursElement = document.querySelector('.hours-bar__total-hours');
 const hoursBarElement = document.querySelector('.hours-bar');
-const workTime = parseInt(document.querySelector('.work-time').textContent.split("h").join(""));
+const workTime = parseFloat(document.querySelector('.work-time').textContent.split("h").join(""));
 
 console.log(valueHour)
 
