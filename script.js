@@ -66,5 +66,14 @@ hoursBarElement.style.setProperty('--total-hours', totalHours);
 hoursBarElement.style.setProperty('--work-time', workTime);
 
 
-
-
+fetch('save-hours.php', {
+    method: 'POST',
+    headers: { 
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ hours: workTime }),
+})
+.then(res => res.json())
+.then(data => {
+    console.log("Guardado en bd:", data);
+})
