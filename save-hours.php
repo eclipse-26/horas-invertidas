@@ -1,13 +1,11 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-$conn = new mysqli("localhost", "root", "", "hmdt");
-
-if ($conn->connect_error) {
-    die("Error de conexión");
+if($_SERVER['HTTP_HOST'] === 'localhost'){
+    require "config-local.php";
+}else{
+    require "config.php";
 }
+
 
 // $conn->query("INSERT INTO worked_hours (hours) VALUES (10)");
 
