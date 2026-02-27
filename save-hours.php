@@ -1,11 +1,16 @@
 <?php
 
-if($_SERVER['HTTP_HOST'] === 'localhost'){
-    require "config-local.php";
-}else{
-    require "config.php";
-}
+ini_set('display_errors', 0); // No mostrar errores al usuario
+ini_set('log_errors', 1);     // Activar log
+ini_set('error_log', __DIR__ . '/error.log'); // Archivo donde guardar
 
+error_reporting(E_ALL);
+
+if($_SERVER['SERVER_NAME'] === 'localhost'){
+    require __DIR__ . "/config-local.php";
+}else{
+    require __DIR__ . "/config.php";
+}
 
 // $conn->query("INSERT INTO worked_hours (hours) VALUES (10)");
 

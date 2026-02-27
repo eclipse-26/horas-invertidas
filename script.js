@@ -58,7 +58,6 @@ function totalSection(section){
 
 function totalHoursFunc(hour){
     totalHours += hour;
-    console.log(totalHours);
 }
 
 totalHoursElement.textContent = totalHours + "h";
