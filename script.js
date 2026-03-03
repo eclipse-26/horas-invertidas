@@ -6,14 +6,34 @@ const sections = document.querySelectorAll('.inversiones .section');
 const totalHoursElements = document.querySelectorAll('.hour');
 const totalHoursElement = document.querySelector('.hours-bar__total-hours');
 const hoursBarElement = document.querySelector('.hours-bar');
-let workTime = parseFloat(document.querySelector('.work-time').textContent.split("h").join(""));
+const workTimeElement = document.getElementById('work-time');
 
+let workTime = 0;
 let totalHours = 0;
 let count = 1;
 
-sections.forEach(section => {
-    totalSection(section);
+
+fetch('get-last-hours.php')
+.then(res => res.json())
+.then(data => {
+    console.log(data);
+    console.log(data.last_hours);
+    workTime = data.last_hours;
+
+    workTimeElement.textContent = workTime;
+    
+    sections.forEach(section => {
+        totalSection(section);
+    });
+
+    totalHoursElement.textContent = totalHours + "h";
+    hoursBarElement.style.setProperty('--total-hours', totalHours);
+    hoursBarElement.style.setProperty('--work-time', workTime);
+})
+.catch(error => {
+    console.log("Error", error);
 });
+
 
 function totalSection(section){
     const items = section.querySelectorAll('.item');
@@ -59,12 +79,7 @@ function totalHoursFunc(hour){
     totalHours += hour;
 }
 
-totalHoursElement.textContent = totalHours + "h";
-hoursBarElement.style.setProperty('--total-hours', totalHours);
-hoursBarElement.style.setProperty('--work-time', workTime);
-
-
-document.getElementById('work-time').addEventListener('focusout', (el)=>{
+workTimeElement.addEventListener('focusout', (el)=>{
     workTime = parseFloat(document.querySelector('.work-time').textContent.split("h").join(""));
     count = 1;
 
@@ -74,9 +89,10 @@ document.getElementById('work-time').addEventListener('focusout', (el)=>{
     items.forEach(item =>{
 
         let accumulatedTime = item.getAttribute('accumulated-time');
-        
+        item.classList.remove('current');
+        item.classList.remove('completed');
+
         if(accumulatedTime <= workTime){
-            item.classList.remove('current');
             item.classList.add('completed');
         }else if(count > 0){
             item.classList.add('current');
