@@ -6,9 +6,7 @@ const sections = document.querySelectorAll('.inversiones .section');
 const totalHoursElements = document.querySelectorAll('.hour');
 const totalHoursElement = document.querySelector('.hours-bar__total-hours');
 const hoursBarElement = document.querySelector('.hours-bar');
-const workTime = parseFloat(document.querySelector('.work-time').textContent.split("h").join(""));
-
-console.log(valueHour)
+let workTime = parseFloat(document.querySelector('.work-time').textContent.split("h").join(""));
 
 let totalHours = 0;
 let count = 1;
@@ -38,6 +36,7 @@ function totalSection(section){
         totalInputsSection += inputValue;
         totalHoursFunc(hourValue);
         item.setAttribute('title', 'Horas:' + totalHours + "h");
+        item.setAttribute('accumulated-time', totalHours);
 
         if(totalHours <= workTime){
             item.classList.add('completed')
@@ -65,14 +64,36 @@ hoursBarElement.style.setProperty('--total-hours', totalHours);
 hoursBarElement.style.setProperty('--work-time', workTime);
 
 
-fetch('save-hours.php', {
-    method: 'POST',
-    headers: { 
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ hours: workTime }),
-})
-.then(res => res.json())
-.then(data => {
-    console.log("Guardado en bd:", data);
+document.getElementById('work-time').addEventListener('focusout', (el)=>{
+    workTime = parseFloat(document.querySelector('.work-time').textContent.split("h").join(""));
+    count = 1;
+
+    hoursBarElement.style.setProperty('--work-time', workTime);
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item =>{
+
+        let accumulatedTime = item.getAttribute('accumulated-time');
+        
+        if(accumulatedTime <= workTime){
+            item.classList.remove('current');
+            item.classList.add('completed');
+        }else if(count > 0){
+            item.classList.add('current');
+            count -=1;
+        }
+    })
+    
+
+    fetch('save-hours.php', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ hours: workTime }),
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Guardado en bd:", data);
+    })
 })
