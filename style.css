@@ -137,3 +137,25 @@ header{
     }     
 }
 
+
+button#add-section {
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: #6e6e6e;
+    justify-content: center;
+    align-items: center;    
+    gap: 0.5rem;
+    cursor: pointer;
+    min-width: 200px;
+    & .icon {
+        font-size: 2em;
+        border: 1px dashed;
+        display: flex;
+        width: fit-content;
+        border-radius: 7px;
+        padding: 0.5rem;
+    }
+}
