@@ -69,7 +69,7 @@ header{
     }
 }
 
-.inversiones{
+.content{
     display: flex;
     justify-content: flex-start;
     gap: 1rem;
@@ -77,6 +77,14 @@ header{
     align-items: flex-start;
     overflow-x: scroll;
     padding-bottom: 2rem;
+}
+
+
+.sections{
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    align-items: flex-start;
 }
 
 .section{

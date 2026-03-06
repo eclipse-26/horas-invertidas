@@ -2,7 +2,7 @@
 console.log("funcionando");
 
 const valueHour = 34500 - (34500*0.06);
-const sections = document.querySelectorAll('.inversiones .section');
+const sections = document.querySelectorAll('.section');
 const totalHoursElements = document.querySelectorAll('.hour');
 const totalHoursElement = document.querySelector('.hours-bar__total-hours');
 const hoursBarElement = document.querySelector('.hours-bar');
