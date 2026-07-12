@@ -47,7 +47,8 @@ function totalSection(section){
         const inputElement = item.querySelector('.input');
         
         const inputValue = parseInt(inputElement.textContent.split(".").join("").split("$").join(""));
-        const hourValue = Math.round(inputValue / valueHour);
+        const result = inputValue / valueHour;
+        const hourValue = Math.ceil(result * 2) / 2;
 
         
         
