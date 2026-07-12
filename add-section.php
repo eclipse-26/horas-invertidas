@@ -8,8 +8,8 @@ if($_SERVER['SERVER_NAME'] === 'localhost'){
 
 $data = json_decode(file_get_contents("php://input"), true);
 $title = $data['title'];
-// Insertar en la base de datos
 
+// Insertar en la base de datos
 $stmt = $conn->prepare("INSERT INTO sections (title) VALUES (?)");
 $stmt->bind_param("s", $title);
 $stmt->execute();

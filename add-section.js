@@ -13,5 +13,6 @@ addSectionButton.addEventListener("click", ()=>{
         .then(res => res.json())
         .then(data => {
             console.log("Sección guardada:", data);
+            location.reload();
         })
 })
