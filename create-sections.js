@@ -11,10 +11,9 @@ const res = fetch('get-sections.php')
 }).then(()=>{
     console.log("¡Todas las secciones han sido creadas!");
     readSections();
-    readAddItemButtons();
-}
-
-)
+}).then(()=>{
+    readSectionForItems()
+})
 .catch(error => {
     console.log("Error", error);
 });
@@ -22,17 +21,17 @@ const res = fetch('get-sections.php')
 
 function createSection(id,title){
     return `
-    <div class="section" data-section-id="${id}">
+    <div id="section-${id}" class="section" data-section-id="${id}">
         <div class="section__header">
             <h2 class="section__name" contenteditable="true">${title}</h2>
         </div>
         <div class="items">
-            <button data-add-item-id="${id}" class="add-item">
+        </div>
+        <button data-add-item-id="${id}" class="add-item">
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M16.5 3.5a.5.5 0 0 0-1 0v12h-12a.5.5 0 0 0 0 1h12v12a.5.5 0 0 0 1 0v-12h12a.5.5 0 0 0 0-1h-12z"/></svg>
-            </span>
-            Agregar item</button>
-        </div>
+            </span>Agregar item
+        </button>
         <div class="section__footer">
             <div>
                 <span>Total:</span>
