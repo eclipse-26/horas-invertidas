@@ -11,6 +11,7 @@ const res = fetch('get-sections.php')
 }).then(()=>{
     console.log("¡Todas las secciones han sido creadas!");
     readSections();
+    readAddItemButtons();
 }
 
 )
