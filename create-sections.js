@@ -27,7 +27,7 @@ function createSection(id,title){
             <h2 class="section__name" contenteditable="true">${title}</h2>
         </div>
         <div class="items">
-            <button id="add-item-${id}" class="add-item">
+            <button data-add-item-id="${id}" class="add-item">
             <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M16.5 3.5a.5.5 0 0 0-1 0v12h-12a.5.5 0 0 0 0 1h12v12a.5.5 0 0 0 1 0v-12h12a.5.5 0 0 0 0-1h-12z"/></svg>
             </span>
