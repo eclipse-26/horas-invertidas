@@ -13,7 +13,9 @@ function readSectionForItems(){
         })
     }).then(()=>{
         console.log("¡Todos los Items han sido creados!");
+        readItems();
         readAddItemButtons();
+        calculateTime();
     })
     .catch(error => {
         console.log("Error", error);
@@ -32,6 +34,7 @@ function createItem(id, title, amount, section_id){
     const newItemDiv = document.createElement("div");
     
     const newItemText = document.createElement("span");
+    newItemText.classList.add("item__title");
     newItemText.textContent = title;
     newItemText.setAttribute('contenteditable', 'true');
 
@@ -44,6 +47,7 @@ function createItem(id, title, amount, section_id){
     const newItemInput = document.createElement("span");
     newItemInput.textContent = amount;
     newItemInput.classList.add("input");
+    newItemInput.classList.add("item__amount");
     newItemInput.setAttribute('contenteditable', 'true');
     
     newItemDiv.appendChild(newItemText);
