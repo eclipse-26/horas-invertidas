@@ -18,10 +18,13 @@ function readItems(){
         const itemAmountEl = item.querySelector('.item__amount');
         if(itemAmountEl){
             console.log(itemAmountEl);
+            itemAmountEl.addEventListener('focus', (amount)=>{
+                amount.target.textContent = amount.target.textContent.split(".").join("");
+            })
             itemAmountEl.addEventListener('focusout', (amount) =>{
                 console.log(item.dataset.itemId);
                 console.log(amount.target.textContent);
-                updateItemAmount(item.dataset.itemId, parseInt(amount.target.textContent));
+                updateItemAmount(item.dataset.itemId, parseInt(amount.target.textContent), amount);
             })
         }
     })
@@ -45,7 +48,7 @@ function updateItemTitle(id, title){
     })
 }
 
-function updateItemAmount(id, amount){
+function updateItemAmount(id, amount, amountEl){
     fetch('save-item-amount.php', {
         method: 'POST',
         headers: { 
@@ -60,5 +63,6 @@ function updateItemAmount(id, amount){
     .then(data => {
         console.log("Valor de Item guardado en bd:", data);
         calculateTime();
+        amountEl.target.textContent = parseInt(amountEl.target.textContent).toLocaleString('es-ES');
     })
 }

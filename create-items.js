@@ -45,7 +45,7 @@ function createItem(id, title, amount, section_id){
     newItemSymbol.textContent = "$";
     
     const newItemInput = document.createElement("span");
-    newItemInput.textContent = amount;
+    newItemInput.textContent = amount.toLocaleString('es-ES');
     newItemInput.classList.add("input");
     newItemInput.classList.add("item__amount");
     newItemInput.setAttribute('contenteditable', 'true');
