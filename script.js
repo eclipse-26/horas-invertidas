@@ -1,5 +1,12 @@
 'strict'
 
+const mainContent = document.getElementById('main-content');
+
+window.addEventListener("click", ()=>{
+    document.body.classList.remove('no-scroll');
+    document.getElementById('item-delete')?.remove();
+})
+
 function calculateTime(){
     console.log("funcionando");
 
@@ -67,6 +74,29 @@ function calculateTime(){
                 item.classList.add('current');
                 count -=1;
             }
+
+            item.addEventListener('contextmenu', (e)=>{
+                e.preventDefault();
+                document.getElementById('item-delete')?.remove();
+
+                const rect = item.getBoundingClientRect();
+                document.body.classList.add('no-scroll');
+
+                const deleteButton = document.createElement('button');
+                deleteButton.id = "item-delete";
+                deleteButton.classList.add('item__delete');
+                deleteButton.textContent = "Borrar";
+                deleteButton.style.top = e.clientY - rect.top + 4 + "px";
+                deleteButton.style.left = e.clientX - rect.left + 4 + "px";
+
+                deleteButton.addEventListener('click', ()=>{    
+                    removeItem(item.dataset.itemId, item);
+                })
+
+                item.appendChild(deleteButton);
+
+                
+            })
         });
 
         if(totalHoursElement){
@@ -136,5 +166,26 @@ function calculateTime(){
             selection.removeAllRanges();
             selection.addRange(range);
         });
+    });
+}
+
+function removeItem(id, item){
+    fetch('delete-item.php',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id: id })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("Item borrado");
+        if(data.success){
+            item.remove();
+            calculateTime();
+        }
+    })
+    .catch(error => {
+        console.log("Error", error);
     });
 }

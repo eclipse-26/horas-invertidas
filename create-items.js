@@ -32,19 +32,20 @@ function createItem(id, title, amount, section_id){
     newItem.setAttribute('data-item-id', id);
    
     const newItemDiv = document.createElement("div");
+    newItemDiv.classList.add('item__info')
     
-    const newItemText = document.createElement("span");
+    const newItemText = document.createElement("div");
     newItemText.classList.add("item__title");
     newItemText.textContent = title;
     newItemText.setAttribute('contenteditable', 'true');
 
-    const newItemDots = document.createElement("span");
+    const newItemDots = document.createElement("div");
     newItemDots.textContent = ": ";
 
-    const newItemSymbol = document.createElement("span");
+    const newItemSymbol = document.createElement("div");
     newItemSymbol.textContent = "$";
     
-    const newItemInput = document.createElement("span");
+    const newItemInput = document.createElement("div");
     newItemInput.textContent = amount.toLocaleString('es-ES');
     newItemInput.classList.add("input");
     newItemInput.classList.add("item__amount");

@@ -17,6 +17,10 @@ body {
     padding: 1rem;
 }
 
+.no-scroll{
+    overflow: hidden;
+}
+
 header{
     padding: 1rem;
     margin-bottom: 2rem;
@@ -85,6 +89,7 @@ header{
     justify-content: flex-start;
     gap: 1rem;
     align-items: flex-start;
+    width: fit-content;
 }
 
 .section{
@@ -118,32 +123,50 @@ header{
     display: flex;   
     gap: 0.5rem;
     flex-direction: column;
-    & .item{
-        box-shadow: 0 4px 4px rgba(0,0,0, 0.05);
-        border: 1px solid #ccc;
-        border-radius: 0.5rem;
-        padding: 1rem;
-        font-size: 15px;
-        font-weight: 500;
-        display: flex;
-        gap: 1rem;
-        justify-content: space-between;
-
-        &.completed{
-            background-color: rgb(215, 251, 215);
-            color: green;
-            border-color: rgb(132, 206, 132);
-            font-weight: 300;
-        }
-
-        &.current{
-            background-color: rgb(243, 235, 253);
-            color: #7300ff;
-            border-color: #7300ff;
-            font-weight: 600;
-        }
-    }     
+        
 }
+
+.item{
+    box-shadow: 0 4px 4px rgba(0,0,0, 0.05);
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    position: relative;
+
+    &.completed{
+        background-color: rgb(215, 251, 215);
+        color: green;
+        border-color: rgb(132, 206, 132);
+        font-weight: 300;
+    }
+
+    &.current{
+        background-color: rgb(243, 235, 253);
+        color: #7300ff;
+        border-color: #7300ff;
+        font-weight: 600;
+    }
+
+    & .item__info{
+        display: flex;
+    }
+
+    & .item__delete{
+        position: absolute;
+        padding: 8px 1rem;
+        background-color: #fff;
+        border: 1px solid #000;
+        &:hover{
+            background-color: red;
+            color: #fff;
+        }
+    }
+} 
 
 
 button#add-section {
